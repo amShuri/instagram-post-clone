@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Source Sans 3", sans-serif;
+    margin: auto;
+    width: 375px;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* typography */
+.post-author,
+.post-likes,
+.post-username {
+    font-weight: bold;
+}
+
+.post-location {
+    font-size: 0.85rem;
+}
+
+/* layout */
+.user-avatar {
+    border-radius: 50%;
+    width: 2.75rem;
+}
+
+.logo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-bottom: 1px solid #C6C6C6;
+    padding: 0.9rem;
+}
+
+.logo-img {
+    max-width: 130px;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    
+    padding: 0.65rem;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.post-btn {
+    background: none;
+    border: none;
+    margin-right: 1rem;
+}
+
+.post-icon {
+    height: 2rem;
+}
