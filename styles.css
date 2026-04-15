@@ -70,4 +70,18 @@ button {
 
 .post-icon {
     height: 2rem;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+}
+
+.post-icon:hover,
+.post-icon:focus {
+    opacity: 0.7;
+    transform: scale(1.2);
+}
+
+.post-icon:active {
+    opacity: 1;
+    transform: scale(1);
 }
