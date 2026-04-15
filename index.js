@@ -1,3 +1,4 @@
+const postContainer = document.getElementById('post-container');
 const posts = [
   {
     name: 'Vincent van Gogh',
@@ -30,7 +31,6 @@ const posts = [
 ];
 
 function renderPosts() {
-  const postContainer = document.getElementById('post-container');
   let html = '';
 
   for (let i = 0; i < posts.length; i++) {
@@ -42,21 +42,21 @@ function renderPosts() {
 
 function getPostHTML(postObj) {
   return `
-        <article>
+        <article class="post">
             <div class="post-content">
                 <header class="post-header">
-                        <img 
-                            src="${postObj.avatar}" 
-                            alt="${postObj.name}"
-                            class="user-avatar">
-                        <div>
-                            <p class="post-author">${postObj.name}</p>
-                            <p class="post-location">${postObj.location}</p>
-                        </div>
+                    <img 
+                        src="${postObj.avatar}" 
+                        alt="Portrait of ${postObj.name}"
+                        class="user-avatar">
+                    <div>
+                        <p class="post-author">${postObj.name}</p>
+                        <p class="post-location">${postObj.location}</p>
+                    </div>
                 </header>
             </div>
             
-            <img src="${postObj.post}" alt="${postObj.name}">
+            <img src="${postObj.post}" alt="${postObj.name}" class="post-img">
             
             <div class="post-content">
                 <div class="post-icons">
@@ -71,7 +71,7 @@ function getPostHTML(postObj) {
                     </button>
                 </div>
                 
-                <p class="post-likes">${postObj.likes} likes</p>
+                <p class="post-likes"><span class="likes-count">${postObj.likes}</span> likes</p>
                 
                 <p>
                     <span class="post-username">${postObj.username}</span> ${postObj.comment}
@@ -81,4 +81,36 @@ function getPostHTML(postObj) {
     `;
 }
 
+function updateLikesCount(likesEl, isLiked) {
+  const currentLikes = Number(likesEl.textContent);
+
+  if (isLiked) {
+    likesEl.textContent = currentLikes + 1;
+  } else {
+    likesEl.textContent = currentLikes - 1;
+  }
+}
+
+function highlightIcon(iconEl, isLiked) {
+  if (isLiked) {
+    iconEl.src = 'images/icon-heart-active.png';
+  } else {
+    iconEl.src = 'images/icon-heart.png';
+  }
+}
+
+function handleLike(e) {
+  const isIcon = e.target.classList.contains('post-icon');
+  if (!isIcon) return;
+
+  const iconEl = e.target;
+  const postEl = iconEl.closest('.post');
+  const likesEl = postEl.querySelector('.likes-count');
+  const isLiked = postEl.classList.toggle('liked');
+
+  highlightIcon(iconEl, isLiked);
+  updateLikesCount(likesEl, isLiked);
+}
+
 renderPosts();
+postContainer.addEventListener('click', handleLike);
