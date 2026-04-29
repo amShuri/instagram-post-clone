@@ -1,4 +1,4 @@
-# Instagram Clone
+# Instagram Feed
 
 A simple Instagram Post layout built with HTML, CSS, and JavaScript.
 
